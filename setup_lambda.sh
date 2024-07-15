@@ -90,6 +90,7 @@ zip $ZIP_FILE lambda_function.py
 echo "Creating Lambda function..."
 aws lambda create-function --function-name $LAMBDA_FUNCTION_NAME \
   --runtime python3.8 \
+  --timeout 300 \
   --role arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):role/$IAM_ROLE_NAME \
   --handler lambda_function.lambda_handler \
   --zip-file fileb://$ZIP_FILE
